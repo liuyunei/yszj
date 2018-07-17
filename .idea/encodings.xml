@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/yszj-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms/yszj-cms-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms/yszj-cms-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms/yszj-cms-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms/yszj-cms-rpc-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms/yszj-cms-rpc-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-cms/yszj-cms-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms/yszj-upms-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms/yszj-upms-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms/yszj-upms-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms/yszj-upms-rpc-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms/yszj-upms-rpc-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-upms/yszj-upms-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user/yszj-user-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user/yszj-user-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user/yszj-user-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user/yszj-user-rpc-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user/yszj-user-rpc-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yszj-user/yszj-user-web" charset="UTF-8" />
+  </component>
+</project>

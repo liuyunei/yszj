@@ -1,0 +1,1 @@
+2018-06-15 13:33:58 [ ERROR ] [ NetUtils.java :229(getLocalAddress0)]  [DUBBO] Could not get local host ip address, will use 127.0.0.1 instead., dubbo version: 2.5.6, current host: 127.0.0.1

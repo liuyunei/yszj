@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html  lang="zh-CN" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>合同案例</title>
+    <link rel="shortcut icon" href="img/favicon.ico" th:href="@{${uiPath} + ${appName} +  '/img/favicon.ico'}">
+    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap.min.css'}"  media="screen">
+    <link rel="stylesheet" href="css/main.css" th:href="@{${uiPath} + ${appName} +  '/css/main.css'}">
+    <link rel="stylesheet" href="css/case.css" th:href="@{${uiPath} + ${appName} +  '/css/case.css'}">
+</head>
+<body>
+<!--表头-->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">yszjUser</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+
+                    <li>
+                    <li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="active">
+                        <a href="http://localhost:4441/contract/index">首页</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/news">新闻资讯</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/case">合同案例</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+                        </a>
+                        <ul class="dropdown-menu" id="menu1">
+                            <li>
+                                <a href="http://localhost:4441/contract/alreadyselect">已签合同
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:4441/contract/waitselect">待签合同
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://localhost:4441/contract/upload2">发起合同签署
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" href="">个人基本信息</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" th:href="password_reset">修改密码</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+<!--<div style="float: left;padding-left: 120px;font-size: large">合同案例:</div>-->
+<div id="bd" class="_warp">
+            <div class="container"style="float: left;padding-left: 600px">
+                <h1>合同案例</h1>
+            </div>
+    <div class="wp">
+        <div class="cases-info fix">
+            <ul>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/8.jpg" th:src="@{${uiPath} + ${appName} + '/img/8.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2018年</h3>
+                            <p>便捷合同管理</p>
+                            <p>在线缔约，合同签署无需面对面</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/7.jpg" th:src="@{${uiPath} + ${appName} + '/img/7.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2018年</h3>
+                            <p>提升风控水平</p>
+                            <p> 实名认证+电子签名，法律效力强</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/6.jpg" th:src="@{${uiPath} + ${appName} + '/img/6.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2018年</h3>
+                            <p>拒绝莫名篡改</p>
+                            <p>数字证书+第三方取时技术+加密处理</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img  src="img/5.jpg" th:src="@{${uiPath} + ${appName} + '/img/5.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2017年</h3>
+                            <p>满足多样需求</p>
+                            <p>存证+技术报告+司法鉴定+在线仲裁</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/4.jpg" th:src="@{${uiPath} + ${appName} + '/img/4.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2017年</h3>
+                            <p>在线签署</p>
+                            <p>异地合同在线签署，无需快递</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/3.jpg" th:src="@{${uiPath} + ${appName} + '/img/3.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2016年</h3>
+                            <p>实名认证 </p>
+                            <p> 确保员工真实身份</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/2.jpg" th:src="@{${uiPath} + ${appName} + '/img/2.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2016年</h3>
+                            <p>加密保护 </p>
+                            <p> 薪酬等机密信息安全无漏</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/1.jpg" th:src="@{${uiPath} + ${appName} + '/img/1.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2016年</h3>
+                            <p>提高效率电</p>
+                            <p>去掉线下往返环节，接收人直接在平台上审批签署合同</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/88.jpg" th:src="@{${uiPath} + ${appName} + '/img/88.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2018年</h3>
+                            <p>管理方便</p>
+                            <p>分类管理统计对接平台签署合同和记录，查找管理方便</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pad">
+                        <div>
+                            <img src="img/77.jpg" th:src="@{${uiPath} + ${appName} + '/img/77.jpg'}">
+                        </div>
+                        <div class="text">
+                            <h3>2017年</h3>
+                            <p>电子合同在线缔约管理</p>
+                            <p>网上办事大厅电子签名服务</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.9.1.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.9.1.js'}"></script>
+<script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body"style="overflow: auto">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+                <div align="center">
+                    <input type="hidden" id="url"/>
+                    <a href="signout" class="btn btn-success" >确定</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

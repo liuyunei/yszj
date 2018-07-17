@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html  lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻资讯</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="img/favicon.ico" th:href="@{${uiPath} + ${appName} +  '/img/favicon.ico'}">
+    <link rel="stylesheet"href="css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap.min.css'}"  media="screen">
+    <link rel="stylesheet" href="css/main.css" th:href="@{${uiPath} + ${appName} +  '/css/main.css'}">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap-responsive.min.css'}"  media="screen">
+    <link rel="stylesheet" href="css/style.css" th:href="@{${uiPath} + ${appName} +  '/css/style.css'}"  type="text/css" media="all" >
+    <link rel="stylesheet" href="css/news.css" th:href="@{${uiPath} + ${appName} +  '/css/news.css'}"  type="text/css" media="all" >
+</head>
+<body style="background:#f7f7f7">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">yszjUser</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+
+                    <li>
+                    <li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="active">
+                        <a href="http://localhost:4441/contract/index">首页</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/news">新闻资讯</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/case">合同案例</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+                        </a>
+                        <ul class="dropdown-menu" id="menu1">
+                            <li>
+                                <a href="http://localhost:4441/contract/alreadyselect">已签合同
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:4441/contract/waitselect">待签合同
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://localhost:4441/contract/upload2">发起合同签署
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" th:href="getUserInfo">个人基本信息</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" th:href="password_reset">修改密码</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+    <div style="float: left;padding-left: 160px;font-size: large">新闻资讯:</div>
+    <!---搜索框--->
+        <div style="float: right;padding-right: 40px" >
+            <input type="text" name="key" placeholder="请输入关键词搜索" autocomplete="off">
+            <input type="submit"  value="搜索">
+        </div>
+    <br><br>
+    <!---搜索框--->
+    <div id="page-content">
+
+        <!-- 新闻分类 -->
+        <section class="box-content box-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box-item">
+                            <img src="img/news1.png" th:src="@{${uiPath} + ${appName} +  '/img/news1.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>科技</h3>
+                                <p>新浪科技讯 北京时间6月8日消息，据国外媒体报道，NASA于美东时间6月7日下午两点（北京时间6月8日凌晨2点）举行新闻发布会，宣布了两项关于火星的重要发现：1、好奇号火星漫游车在接近火星地表处一块有30亿年历史的沉积岩中发现了有机分子，说明火星可能曾存在远古生命；2、发现火星大气中的甲烷含量存在季节性波动现象，或与现代火星生命有关。虽然不足以说明火星上一定存在生命，但对未来的火星表面和地下探索任务而言，这些发现无疑是个好兆头。</p>
+                                <a href="http://tech.sina.com.cn">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/8</span><br>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <img src="img/news2.png" th:src="@{${uiPath} + ${appName} +  '/img/news2.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>财经</h3>
+                                <p>上证报消息，海航控股公告，公司拟以3.12元/股发行33.58亿股，向交易对方海航航空集团购买其持有的海航技术60.78%股份、HNA Aviation 59.93%股份、天羽飞训100%股权；向交易对方天津创鑫投资购买其持有的西部航空29.72%股权；向交易对方海航西南总部购买其持有的西部控股60%股权。</p>
+                                <a href="http://finance.sina.com.cn">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/8</span><br>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <img src="img/news3.png" th:src="@{${uiPath} + ${appName} +  '/img/news3.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>军事</h3>
+                                <p>近期解放军演习秀出我单兵作战最强火力，两个120火和两个35榴并排打击彰显战力。解放军使用PF-98式120毫米反坦克火箭筒，虽然简单却威力巨大，能一下炸掉厚重的碉堡。但是这种武器也有一定弊端，那就是打击精度不如导弹。</p>
+                                <a href="https://mil.news.sina.com.cn">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/9</span><br>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <img src="img/news4.png" th:src="@{${uiPath} + ${appName} +  '/img/news4.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>政治</h3>
+                                <p>本报北京6月8日电  （记者李伟红）8日，国家主席习近平在人民大会堂同俄罗斯总统普京举行会谈。两国元首一致同意，秉持世代友好理念和战略协作精神，拓展和深化各领域合作，推动新时代中俄关系在高水平上实现更大发展。中共中央政治局常委、国务院副总理韩正参加会谈。</p>
+                                <a href="http://politics.people.com.cn">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/8</span><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box-item">
+                            <img src="img/news5.png" th:src="@{${uiPath} + ${appName} +  '/img/news5.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>历史</h3>
+                                <p>给他国造成无尽灾难的侵略战争，在日本人看来，却是很正常的。因为从明治时代开始，他们就觉得自己与亚洲各国不同，只有他们是文明的，其他都是野蛮的。因此，他们征清、征韩。所谓征，在古代，就是有道伐无道之意。那些所谓精英有这样的观念，自然就会转化到教科书里，灌输到学生们的脑袋里。</p>
+                                <a href="http://history.sohu.com">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/5</span><br>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <img src="img/news6.png" th:src="@{${uiPath} + ${appName} +  '/img/news6.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>体育</h3>
+                                <p>北京时间今天早晨（美国当地时间6月9日），美国三冠赛最后一战——贝尔蒙特锦标赛在贝尔蒙特公园赛场开闸，CHC旗下赛驹——中国马主的3岁雄马“正义”再次夺冠，成为最近4年里第2个三冠王，也是美国历史上第13个三冠王。</p>
+                                <a href="http://sports.sina.com.cn">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/9</span><br>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <img src="img/news7.png" th:src="@{${uiPath} + ${appName} +  '/img/news7.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>音乐</h3>
+                                <p>新浪娱乐讯 6月8日消息，由薛之谦[微博]作词并演唱，方毅作曲的微创情歌《那是你离开了北京的生活》于今日18：00全网首发。歌曲细腻剖开爱情中尘封的离别心事和纤密情调，“我活成了你的影子，你奔向光，奔向未来，而我，守着你的往事回忆，眼望人海十万里，却再也无法出现在你的明天里。”此次超高情感浓度的“薛氏情歌”，深层挖掘发酵在爱情岁月里平凡又戳人的回忆杀，折射事业与情感的艰难抉择。刻画每个人心中属于自己的那份“北京情结”，最终我们静静独守“曾经”。盛夏时节这城市的每一个角落似乎都留存着我们爱过的痕迹，这炎热的温度恰巧隐藏了离别的悲凉，那些不敢说出口的伤痛，细听娓娓道来。</p>
+                                <a href="http://yue.sina.com.cn">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/8</span><br>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <img src="img/news8.png" th:src="@{${uiPath} + ${appName} +  '/img/news8.png'}" class="img-responsive"/>
+                            <div class="content">
+                                <h3>时尚</h3>
+                                <p> 本周从CFDA时尚大奖到《瞒天过海：美人计》首映，国外的穿衣战场真是热闹非凡。Kendall一身浅薰衣草色羽毛礼服飘逸灵动仿若即将“羽化登仙”。刘雯穿黑色套装出席活动，干练又不失温柔。周冬雨宫廷衬衫＋金属半裙加身超惊艳，化身金色“小黄鸭”。</p>
+                                <a href="http://fashion.sohu.com">阅读更多</a>
+                                <br><br>
+                                <span>2018/6/7</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/jquery-1.9.1.js" th:src="@{${uiPath} + ${appName} +  'js/jquery-1.9.1.js'}"></script>
+    <script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} +  'js/bootstrap.min.js'}"></script>
+<!--模态框-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body"style="overflow: auto">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+                <div align="center">
+                    <input type="hidden" id="url"/>
+                    <a href="signout" class="btn btn-success" >确定</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuyunei.user.dao.mapper.UcUserContractMapper">
+  <resultMap id="BaseResultMap" type="com.liuyunei.user.dao.model.UcUserContract">
+    <id column="contract_id" jdbcType="VARCHAR" property="contractId" />
+    <result column="user_id1" jdbcType="VARCHAR" property="userId1" />
+    <result column="user_id2" jdbcType="VARCHAR" property="userId2" />
+    <result column="key1" jdbcType="VARCHAR" property="key1" />
+    <result column="key2" jdbcType="VARCHAR" property="key2" />
+    <result column="contract_title" jdbcType="VARCHAR" property="contractTitle" />
+    <result column="contract_time1" jdbcType="DATE" property="contractTime1" />
+    <result column="contract_time2" jdbcType="DATE" property="contractTime2" />
+    <result column="contract_status" jdbcType="INTEGER" property="contractStatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.liuyunei.user.dao.model.UcUserContract">
+    <result column="contract_cms" jdbcType="LONGVARCHAR" property="contractCms" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    contract_id, user_id1, user_id2, key1, key2, contract_title, contract_time1, contract_time2, 
+    contract_status
+  </sql>
+  <sql id="Blob_Column_List">
+    contract_cms
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.liuyunei.user.dao.model.UcUserContractExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uc_user_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.liuyunei.user.dao.model.UcUserContractExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uc_user_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uc_user_contract
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from uc_user_contract
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.liuyunei.user.dao.model.UcUserContractExample">
+    delete from uc_user_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liuyunei.user.dao.model.UcUserContract">
+    insert into uc_user_contract (contract_id, user_id1, user_id2, 
+      key1, key2, contract_title, 
+      contract_time1, contract_time2, contract_status, 
+      contract_cms)
+    values (#{contractId,jdbcType=VARCHAR}, #{userId1,jdbcType=VARCHAR}, #{userId2,jdbcType=VARCHAR}, 
+      #{key1,jdbcType=VARCHAR}, #{key2,jdbcType=VARCHAR}, #{contractTitle,jdbcType=VARCHAR}, 
+      #{contractTime1,jdbcType=DATE}, #{contractTime2,jdbcType=DATE}, #{contractStatus,jdbcType=INTEGER}, 
+      #{contractCms,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liuyunei.user.dao.model.UcUserContract">
+    insert into uc_user_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        contract_id,
+      </if>
+      <if test="userId1 != null">
+        user_id1,
+      </if>
+      <if test="userId2 != null">
+        user_id2,
+      </if>
+      <if test="key1 != null">
+        key1,
+      </if>
+      <if test="key2 != null">
+        key2,
+      </if>
+      <if test="contractTitle != null">
+        contract_title,
+      </if>
+      <if test="contractTime1 != null">
+        contract_time1,
+      </if>
+      <if test="contractTime2 != null">
+        contract_time2,
+      </if>
+      <if test="contractStatus != null">
+        contract_status,
+      </if>
+      <if test="contractCms != null">
+        contract_cms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId1 != null">
+        #{userId1,jdbcType=VARCHAR},
+      </if>
+      <if test="userId2 != null">
+        #{userId2,jdbcType=VARCHAR},
+      </if>
+      <if test="key1 != null">
+        #{key1,jdbcType=VARCHAR},
+      </if>
+      <if test="key2 != null">
+        #{key2,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTitle != null">
+        #{contractTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTime1 != null">
+        #{contractTime1,jdbcType=DATE},
+      </if>
+      <if test="contractTime2 != null">
+        #{contractTime2,jdbcType=DATE},
+      </if>
+      <if test="contractStatus != null">
+        #{contractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contractCms != null">
+        #{contractCms,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.liuyunei.user.dao.model.UcUserContractExample" resultType="java.lang.Long">
+    select count(*) from uc_user_contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update uc_user_contract
+    <set>
+      <if test="record.contractId != null">
+        contract_id = #{record.contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId1 != null">
+        user_id1 = #{record.userId1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId2 != null">
+        user_id2 = #{record.userId2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.key1 != null">
+        key1 = #{record.key1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.key2 != null">
+        key2 = #{record.key2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractTitle != null">
+        contract_title = #{record.contractTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractTime1 != null">
+        contract_time1 = #{record.contractTime1,jdbcType=DATE},
+      </if>
+      <if test="record.contractTime2 != null">
+        contract_time2 = #{record.contractTime2,jdbcType=DATE},
+      </if>
+      <if test="record.contractStatus != null">
+        contract_status = #{record.contractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.contractCms != null">
+        contract_cms = #{record.contractCms,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update uc_user_contract
+    set contract_id = #{record.contractId,jdbcType=VARCHAR},
+      user_id1 = #{record.userId1,jdbcType=VARCHAR},
+      user_id2 = #{record.userId2,jdbcType=VARCHAR},
+      key1 = #{record.key1,jdbcType=VARCHAR},
+      key2 = #{record.key2,jdbcType=VARCHAR},
+      contract_title = #{record.contractTitle,jdbcType=VARCHAR},
+      contract_time1 = #{record.contractTime1,jdbcType=DATE},
+      contract_time2 = #{record.contractTime2,jdbcType=DATE},
+      contract_status = #{record.contractStatus,jdbcType=INTEGER},
+      contract_cms = #{record.contractCms,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update uc_user_contract
+    set contract_id = #{record.contractId,jdbcType=VARCHAR},
+      user_id1 = #{record.userId1,jdbcType=VARCHAR},
+      user_id2 = #{record.userId2,jdbcType=VARCHAR},
+      key1 = #{record.key1,jdbcType=VARCHAR},
+      key2 = #{record.key2,jdbcType=VARCHAR},
+      contract_title = #{record.contractTitle,jdbcType=VARCHAR},
+      contract_time1 = #{record.contractTime1,jdbcType=DATE},
+      contract_time2 = #{record.contractTime2,jdbcType=DATE},
+      contract_status = #{record.contractStatus,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liuyunei.user.dao.model.UcUserContract">
+    update uc_user_contract
+    <set>
+      <if test="userId1 != null">
+        user_id1 = #{userId1,jdbcType=VARCHAR},
+      </if>
+      <if test="userId2 != null">
+        user_id2 = #{userId2,jdbcType=VARCHAR},
+      </if>
+      <if test="key1 != null">
+        key1 = #{key1,jdbcType=VARCHAR},
+      </if>
+      <if test="key2 != null">
+        key2 = #{key2,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTitle != null">
+        contract_title = #{contractTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTime1 != null">
+        contract_time1 = #{contractTime1,jdbcType=DATE},
+      </if>
+      <if test="contractTime2 != null">
+        contract_time2 = #{contractTime2,jdbcType=DATE},
+      </if>
+      <if test="contractStatus != null">
+        contract_status = #{contractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contractCms != null">
+        contract_cms = #{contractCms,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.liuyunei.user.dao.model.UcUserContract">
+    update uc_user_contract
+    set user_id1 = #{userId1,jdbcType=VARCHAR},
+      user_id2 = #{userId2,jdbcType=VARCHAR},
+      key1 = #{key1,jdbcType=VARCHAR},
+      key2 = #{key2,jdbcType=VARCHAR},
+      contract_title = #{contractTitle,jdbcType=VARCHAR},
+      contract_time1 = #{contractTime1,jdbcType=DATE},
+      contract_time2 = #{contractTime2,jdbcType=DATE},
+      contract_status = #{contractStatus,jdbcType=INTEGER},
+      contract_cms = #{contractCms,jdbcType=LONGVARCHAR}
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liuyunei.user.dao.model.UcUserContract">
+    update uc_user_contract
+    set user_id1 = #{userId1,jdbcType=VARCHAR},
+      user_id2 = #{userId2,jdbcType=VARCHAR},
+      key1 = #{key1,jdbcType=VARCHAR},
+      key2 = #{key2,jdbcType=VARCHAR},
+      contract_title = #{contractTitle,jdbcType=VARCHAR},
+      contract_time1 = #{contractTime1,jdbcType=DATE},
+      contract_time2 = #{contractTime2,jdbcType=DATE},
+      contract_status = #{contractStatus,jdbcType=INTEGER}
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

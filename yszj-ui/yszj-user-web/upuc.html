@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css_user/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css_user/bootstrap.min.css'}">
+    <link href="css_user/admin.css" rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css_user/admin.css'}"/>
+    <link rel="stylesheet" href="css_user/main.css"  th:href="@{${uiPath} + ${appName} + '/css_user/main.css'}"/>
+    <link rel="stylesheet" type="text/css" href="css_user/lunbo.css" th:href="@{${uiPath} + ${appName} + '/css_user/lunbo.css'}"/>
+    <link rel="stylesheet" type="text/css" href="css_user/index.css" th:href="@{${uiPath} + ${appName} + '/css_user/index.css'}"/>
+
+</head>
+
+<body>
+<!--<header id="header"></header>-->
+<!--表头-->
+<nav class="navbar navbar-inverse navbar-fixed-top" ><!--navbar-inverse-->
+    <div class="container">
+        <!-- navbar-header -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/}" title="yszjCMS"><span id="logo-text-left">yszj</span><span id="logo-text-right">User</span></a>
+        </div>
+        <!-- /.navbar-header -->
+        <!-- navbar-collapse -->
+        <div class="collapse navbar-collapse" id="nav-menu">
+            <ul class="nav navbar-nav">
+                <li class="active" >
+                    <a href="http://localhost:4441/contract/index">首页</a>
+                </li>
+                <li class="dropdown">
+                    <a href="http://localhost:4441/contract/news">新闻资讯</a>
+                </li>
+                <li class="dropdown">
+                    <a href="http://localhost:4441/contract/case">合同案例</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+                    </a>
+                    <ul class="dropdown-menu" id="menu1">
+                        <li>
+                            <a href="http://localhost:4441/contract/alreadyselect">已签合同
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:4441/contract/waitselect">待签合同
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="http://localhost:4441/contract/upload2">发起合同签署
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a tabindex="-1" th:href="getUserInfo">个人基本信息</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a tabindex="-1" href="password_reset">修改密码</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-right navbar-nav">
+
+                <li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+    <div style="margin: 70px;margin-left: 80px;margin-top: 40px">
+            <div class="content_main">
+                <div id="iframe_home" class="iframe cur" th:action="@{/updateUserInfo}" th:method="get">
+                    <div style="text-align:center;width:100%;height: 20%">
+                        <br >
+                        <dt><font size="5px">修改 <span style="color: #0099CC" th:text="${ucUser.userId}"></span> 用户的信息</font></dt>
+                        <dd  th:each="ucUser : ${ucUser}"></dd>
+                        <br>
+                        <br>
+                        <!--<dd th:each="ucUserD : ${ucUserD}"><a href="/upuc.html" th:href="@{'/upuc/' + ${ucUserD.userId}}" th:text="${ucUserD.userId}">修改信息</a></dd>-->
+                        </dl>
+                    </div>
+                    <!--第一行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <!--//不可以修改id-->
+                        <div class="col-md-10" style="height: 30px">
+                            <div class="col-md-2 text-right" >
+                                <label class="left"  >用户名：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <div name="useId" id="useId" th:text="${ucUser.userId}"></div>
+                            </div>
+                            <div class="col-md-2 text-right" >
+                                <label class="right">昵称：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <input   id="nickname" name="nickname" th:field="${ucUser.nickname}" >`
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第二行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px">
+                            <div class="col-md-2 text-right"  >
+                                <label class="left">性别：</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="sex" th:field="${ucUser.sex}" style="display: none">
+                                <input type="radio"   id="boy" name="sex" value="1">男
+                                <input type="radio"    id="girl" name="sex" value="2" >女
+                            </div>
+                            <div class="col-md-2 text-right" >
+                                <label class="right">真实姓名：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <input  id="realName" th:field="${ucUser.realName}">
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第三行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px">
+                            <div class="col-md-2 text-right"  >
+                                <label class="left">出生日期：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <!--用input临时存放数据，并将其隐藏-->
+                                <input id="birth" th:field="${ucUser.birthday}" style="display: none">
+                                <input type="Date" id="birthday" name="birthday">
+                            </div>
+                            <div class="col-md-2 text-right"  >
+                                <label class="left">密保问题：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <input id="que" th:field="${ucUser.question}" style="display: none">
+                                <select id="question" class="content" >
+                                    <option>请选择你的密保问题：</option>
+                                    <option value="0">你的父亲名字：</option>
+                                    <option value="1">你的母亲名字：</option>
+                                    <option value="2">你的高中学校的名字：</option>
+                                    <option value="3">你的学号：</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第四行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px" >
+
+                            <div class="col-md-2 text-right" >
+                                <label class="content">个性签名：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <input name="signature" id="signature" th:field="${ucUser.signature}">
+                            </div>
+                            <div class="col-md-2 text-right" >
+                                <label class="left">密保答案：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <input  type="text"  id="answer" th:field="${ucUser.answer}">
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                </div >
+                    <div class="row" >
+                        <div class="col-md-4" >
+                        </div>
+                           <div class="col-md-2 text-right" >
+                                <input type="submit" id="btn"  class="btn btn-success" value="提交" >
+                           </div>
+                           <div>
+                                <a href="getUserInfo" class="btn btn-danger">取消</a>
+                           </div>
+                        <div class="col-md-4" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+<!-- footer -->
+<div  style="min-height: 150px;">
+</div>
+<footer  class="container-fluid" style="background:#222;padding-top:20px;min-height:120px;color: #f7f7f7">
+    <div class="container">
+        <div class="row" >
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                系统简介：本系统主要用于合同签署管理相关流程，以此简化合同签署繁琐的流程。
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                客服热线：400-607-5550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                客户QQ：4006075550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-md">
+                客户邮箱：4006075550@qq.com
+            </div>
+            <br>
+        </div>
+    </div>
+</footer>
+<!-- /footer -->
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
+<script src="js_user/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/jquery-1.11.2.min.js'}"></script>
+<script src="js_user/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/bootstrap.min.js'}"></script>
+<script src="js_user/jquery.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/jquery.min.js'}"></script>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-body"style="overflow: auto">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+                <div align="center">
+                    <input type="hidden" id="url"/>
+                    <a href="signout" class="btn btn-success" >确定</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function Todate(num) {
+        num = num + "";
+        var date = "";
+        var month = new Array();
+        month["Jan"] = '01'; month["Feb"] = '02'; month["Mar"] = '03'; month["Apr"] = '04'; month["May"] = '05';
+        month["Jun"] = '06'; month["Jul"] = '07'; month["Aug"] = '08'; month["Sep"] = '09'; month["Oct"] = '10';
+        month["Nov"] = '11'; month["Dec"] = '12';
+        var week = new Array();
+        week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四"; week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
+        //用空格分割
+        str = num.split(" ");
+        //Sat Jun 01 00:00:00 CST 1996  年份为第五，月份为第二 日期为第三
+        date = str[5] + "-";
+        date = date + month[str[1]] + "-" + str[2];
+        return date;
+    }
+
+    //修改的ajax
+    window.onload=function () {
+        var que = document.getElementById("que").value;
+        document.getElementById("question").value=que;
+
+
+        var birth=document.getElementById("birth").value;
+        document.getElementById("birthday").value=Todate(birth);
+
+        var sex = document.getElementById("sex").value;
+        if (sex == 1) {
+            document.getElementById("boy").checked = true;
+        } else if (sex == 2) {
+            document.getElementById("girl").checked = true;
+        } else {
+
+        }
+    }
+    $(function() {
+        // 点击提交按钮
+        $('#btn').click(function() {
+            modify();
+        });
+    });
+    function modify() {
+        // alert("进入了修改方法");
+        // alert($('#nickname').val());
+        $.ajax({
+            url: BASE_PATH + '/updateUserInfo',
+            type: 'POST',
+            data: {
+                nickname: $('#nickname').val(),
+                sex: $('input[name=sex]:checked').val(),
+                realName: $('#realName').val(),
+                birthday: $('#birthday').val(),
+                signature: $('#signature').val(),
+                question: $('#question').val(),
+                answer: $('#answer').val()
+            },
+            dataType:"json",
+            success:function(json){
+                alert("修改成功！")
+                window.location.href="http://localhost:4441/signin";
+            },
+            beforeSend: function() {
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
+
+
+</script>
+
+
+</body>
+</html>

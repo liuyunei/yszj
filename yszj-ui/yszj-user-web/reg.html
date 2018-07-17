@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册中心</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css_user/bootstrap.min.css'}">
+    <link rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css_user/style.css'}">
+</head>
+<body class="register-page">
+<!--<div th:text="${testgwh}">这里是信息提示.</div>-->
+<!--<div>这里是信息提示.</div>-->
+<div class="register-box">
+    <div class="login-logo">
+        <a href="#"><b>yszj</b>UC</a>
+    </div>
+
+    <div class="row login-box-body">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-xs-6 logo-tip">
+                <i class="iconfont icon-icon053"></i> <span>注册</span>
+            </div>
+            <div class="col-xs-6" style="text-align: right">
+                <a href="signin">已有账号？ 登录</a>
+            </div>
+        </div>
+        <!-- Nav tabs -->
+        <ul class="tabs-menu">
+            <li class="active"><a href="#email" data-toggle="tab">邮箱注册</a></li>
+            <li><a href="#phone" data-toggle="tab">手机注册</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="email">
+                <div class="login-box-body">
+                    <form id="comsign">
+                        <div class="form-group has-feedback">
+                            <input type="email" class="form-control"  id="emailNumber" placeholder="邮箱" >
+                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                            <!--在div显示错误信息-->
+                            <div id="emsg" style="color:red;"></div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" class="form-control" id="epassword1" placeholder="账号密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <!--在div显示错误信息-->
+                            <div id="emsp" style="color:red;"></div>
+                            <!--<input autocomplete="off" placeholder="账号密码" type="password" rows="2" validateevent="true" >-->
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password"  class="form-control" id="epassword2" placeholder="确认密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <!--<input autocomplete="off" placeholder="账号密码" type="password" rows="2" validateevent="true" >-->
+                            <!--在div显示错误信息-->
+                            <div id="msg1" style="color:red;"></div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-xs-12">
+                                <div class="checkbox icheck">
+                                    <label><input type="checkbox" id="agree1"> 已阅读并接受</label>
+                                    <!-- Large modal -->
+                                    <a data-toggle="modal" data-target=".bs-example-modal-lg">服务协议</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-xs-12">
+                                <button type="submit"  class="btn btn-primary btn-block btn-flat" id="reg-bt1"  disabled="true">注册</button>
+                            </div>
+                    <!-- /.col -->
+                </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" id="phone">
+                <div class="login-box-body">
+                    <form >
+                        <div class="form-group has-feedback">
+                            <input type="text" id="phoneNumber" class="form-control" placeholder="手机号" onchange="checkMobile(this )" >
+                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                            <div id="pmsg" style="color:red;"></div>
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" class="form-control" id="mpassword1" placeholder="账号密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <div id="pmsp" style="color:red;"></div>
+                            <!--<input autocomplete="off" placeholder="账号密码" type="password" rows="2" validateevent="true" >-->
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" class="form-control" id="mpassword2" placeholder="确认密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <!--<input autocomplete="off" placeholder="账号密码" type="password" rows="2" validateevent="true" >-->
+                            <!--在div显示错误信息-->
+                            <div id="msg2" style="color:red;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="checkbox icheck">
+                                    <label><input type="checkbox" id="agree2"> 已阅读并接受
+                                    </label>
+                                    <!-- Large modal -->
+                                    <a data-toggle="modal" data-target=".bs-example-modal-lg">服务协议</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-xs-12">
+                                <button type="submit" id="reg-bt2" class="btn btn-primary btn-block btn-flat" disabled="true">注册</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </form>
+                </div>
+                <!-- /.login-box-body -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
+
+<script src="js_user/jquery.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/jquery.min.js'}"></script>
+<script src="js_user/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/bootstrap.min.js'}"></script>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!--<div class="alert alert-success alert-dismissable" id="closel" style="margin: 10px;width: 15px;text-align: center;font-weight: bold;">-->
+            <!--<button type="button" class="close" style="right: auto" onclick="closel()">&times;</button>-->
+
+            <h4>1. 特别提示</h4>
+            1.1
+            运营方同意按照本协议的规定及其不时发布的操作规则向用户提供服务。为获得服务，系统服务使用人（以下称"用户"）需在认真阅读及独立思考的基础上认可、同意本协议的全部条款（特别是以加粗方式提示用户注意的条款）并按照页面上的提示完成全部的注册程序。用户在进行注册过程中点击"同意" 按钮（或实际使用服务）即表示用户完全接受本服务协议。如用户对本服务协议或协议的任何部分存有任何异议，应终止注册程序。<br>
+            1.2 用户注册成功后，运营方将为用户基于使用系统服务的客观需要而在申请、注册服务时，按照注册要求提供的账号开通服务，用户有权在微博运营方为其开通并同意向其提供服务的基础上使用服务。同时，用户同意：<br>
+            1.2.1 用户应妥善保管微博账号及密码。<br>
+            1.2.2 未经运营方同意，用户不得擅自买卖、转让、出租任何账号或昵称。<br>
+            1.2.3 用户使用系统服务过程中，须对自身使用系统服务的行为，对任何由用户通过系统服务发布、公开的信息，及对由此产生的任何后果承担全部责任。<br>
+            1.2.4 用户可以通过设置功能，自行确认和控制自己在使用微博服务过程中提交、发布或显示的信息的公开方式和可见范围。<br>
+            1.3 用户使用微博服务过程中，对自身使用系统服务的行为以及通过微博服务发布、公开的任何信息享有合法权利，承担相应法律责任。同时，用户同意：<br>
+            1.3.1 微博运营方对微博内容（系统内容即指用户在微博上已发布的信息，例如文字、图片、视频、音频等）享有使用权。<br>
+            1.3.2 未经微博运营方事先书面许可，用户不得自行或授权、协助任何第三方非法抓取系统内容，“非法抓取”是指采用程序或者非正常浏览等技术手段获取内容数据的行为。<br>
+            1.4 用户在使用微博服务过程中应当严格遵守系统运营方所发布的Robots协议。 未经运营方事先书面同意，任何用户不得以任何方式自行或委托任何第三方以违反上述规定的方式访问微博平台或收集任何系统内容。<br>
+            1.5 在法律法规允许的范围内，用户同意并授权系统运营方就侵犯用户合法权益的行为（包括但不限于私自复制、使用、编辑、抄袭等行为）采取任何形式的法律行动，包括但不限于投诉、诉讼等必要的维权措施。<br>
+            1.6 系统运营方有权直接将本服务或本协议项下权利义务委托给其关联公司或其他第三方公司进行运营、管理及履行，系统运营方无需就此向用户另行获取授权。系统运营方将竭尽避免前述委托或变更给用户使用系统服务造成的不便，系统运营方届时将尽量及时通过网站、平台、私信、邮件等方式进行通知。本协议中，关联公司是指控制某一方的、或被某一方所控制的、或与某一方共同受控制于同一实体的任何企业。控制是指直接或间接拥有该企业百分之五十（50％）以上的股权、投票权或管理权。<br>
+            1.7 为提高用户的微博服务使用感受和满意度，用户同意系统运营方可以对用户数据进行调查研究和分析，从而进一步优化系统服务<br>
+            <h4>2. 服务内容
+                系统服务的具体内容由运营方根据实际情况提供，其他均由用户自行负担。
+            </h4>
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //邮箱的ajax
+    $(function() {
+        // 点击注册按钮
+        $('#reg-bt1').click(function() {
+            document.getElementById("emsg").innerHTML="";
+            document.getElementById("emsp").innerHTML="";
+            document.getElementById("msg1").innerHTML="";
+            var email = document.getElementById("emailNumber").value; //获取邮箱地址
+            var ep1 = document.getElementById("epassword1").value;   //获得邮箱密码
+            var ep2 = document.getElementById("epassword2").value;
+            //判断邮箱格式是否正确
+            if(email=="")
+            {
+                document.getElementById("emsg").innerHTML = "邮箱不可以为空";
+                return false;
+            }else {
+                emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+                if (!emailReg.test(email)) {
+                    document.getElementById("emsg").innerHTML = "请输入正确邮箱地址";
+                    return false;
+                } else if (ep1 == "") {
+                    document.getElementById("emsp").innerHTML = "请输入密码";
+                    return false;
+                }else if(ep1.length<6||ep1.length>32){
+                    document.getElementById("emsp").innerHTML = "密码长度不得小于6，超过32位";
+                    return false;
+                } else if (ep1 != ep2) {
+                    document.getElementById("msg1").innerHTML = "两次输入密码不一致，请重新输入";
+                    return false;
+                } else {
+                    //密码一致，可以继续下一步操作
+                    $.ajax({
+                        url: BASE_PATH + '/signup',
+                        type: 'POST',
+                        data: {
+                            userId: $('#emailNumber').val(),
+                            password: $('#epassword1').val(),
+                        },
+                        beforeSend: function() {
+
+                        },
+                        success: function(json){
+                            if (json.code == 1) {
+                                alert("注册成功！");
+                                // location.href = json.data;
+                                window.location.href="http://localhost:4441/signin";
+                            } else {
+                                alert(json.data);
+                                if (10101 == json.code) {
+                                    $('#emailNumber').focus();
+                                }
+                                if (10102 == json.code) {
+                                    $('#epassword1').focus();
+                                }
+                            }
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                    });
+                }
+            }
+
+        });
+
+    });
+
+
+    $(function() {
+        // 点击注册按钮
+        $('#reg-bt2').click(function() {
+            document.getElementById("pmsg").innerHTML="";
+            document.getElementById("pmsp").innerHTML="";
+            document.getElementById("msg2").innerHTML="";
+            var phone=document.getElementById("phoneNumber").value;
+            var mp1 = document.getElementById("mpassword1").value;
+            var mp2 = document.getElementById("mpassword2").value;
+            if(phone==""){
+                document.getElementById("pmsg").innerHTML="手机号不可以为空";
+                return false;
+            }
+            else { // 以1、/3/5/8开始后面加9位数字-->
+                var re = /^(13[0-9]\d{8}|15[0-35-9]\d{8}|18[0-9]\d{8}|14[57]\d{8})$/;
+                if (!re.test(phone)) {
+                    document.getElementById("pmsg").innerHTML="请正确输入手机号";
+                    return false;
+                }else if (mp1 == "") {
+                    document.getElementById("pmsp").innerHTML = "请输入密码";
+                    return false;
+                }else if(mp1.length<6||mp1.length>32)
+                {
+                    document.getElementById("pmsp").innerHTML = "密码长度不得小于6，超过32位";
+                    return false;
+                } else if(mp1!=mp2)
+                     {
+                          document.getElementById("msg2").innerHTML="两次输入密码不一致，请重新输入";
+                          return false;
+                     }else{
+                    //密码一致，可以继续下一步操作
+                    $.ajax({
+                        url: BASE_PATH + '/signup',
+                        type: 'POST',
+                        data: {
+                            userId: $('#phoneNumber').val(),
+                            password: $('#mpassword1').val(),
+                            // // rememberMe: $('#rememberMe').is(':checked'),
+                            // backurl: BACK_URL
+                        },
+                        dataType:"json",
+                        success:function(json){
+                            alert("注册成功！")
+                            window.location.href="http://localhost:4441/signin";
+                        },
+                        beforeSend: function() {
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                    });
+                      }
+            }
+        });
+        // // 回车事件
+        // $('#phoneNumber, #mpassword1').keypress(function (event) {
+        //     if (13 == event.keyCode) {
+        //         reg1();
+        //     }
+        // });
+    });
+
+
+</script>
+<script  type="text/javascript">
+    (function(){//邮箱勾选框与注册按钮事件
+        var cb=document.getElementById("agree1");
+        cb.onclick=function(){
+            if(cb.checked==true){
+                document.getElementById("reg-bt1").disabled=false;
+            }
+            else{
+                document.getElementById("reg-bt1").disabled=true;
+            }
+        }
+    })();
+        (function(){//手机号勾选框与注册按钮事件
+            var cb=document.getElementById("agree2");
+            cb.onclick=function(){
+                if(cb.checked==true){
+                    document.getElementById("reg-bt2").disabled=false;
+                }
+                else{
+                    document.getElementById("reg-bt2").disabled=true;
+                }
+
+            }
+
+        })();
+
+</script>
+</body>
+
+</html>

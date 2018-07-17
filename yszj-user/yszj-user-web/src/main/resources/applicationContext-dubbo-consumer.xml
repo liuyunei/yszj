@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+
+    <dubbo:application name="yszj-user-web"/>
+
+    <dubbo:registry file="./yszj-user-web-dubbo.cache" address="zookeeper://zkserver:2181"/>
+
+    <!-- 订阅服务 -->
+    <dubbo:consumer check="false"/>
+
+    <!-- 认证方式 -->
+    <dubbo:reference id="ucOauthService" interface="com.liuyunei.user.rpc.api.UcOauthService" mock="true"/>
+    <!-- 用户认证 -->
+    <dubbo:reference id="ucUserOauthService" interface="com.liuyunei.user.rpc.api.UcUserOauthService" mock="true"/>
+    <!-- 用户操作日志 -->
+    <dubbo:reference id="ucUserLogService" interface="com.liuyunei.user.rpc.api.UcUserLogService" mock="true"/>
+    <!-- 用户 -->
+    <dubbo:reference id="ucUserService" interface="com.liuyunei.user.rpc.api.UcUserService" mock="true"/>
+    <!-- 接口服务 -->
+    <dubbo:reference id="ucApiService" interface="com.liuyunei.user.rpc.api.UcApiService" mock="true"/>
+    <!-- 合同服务 -->
+    <dubbo:reference id="ucUserContractService"  interface="com.liuyunei.user.rpc.api.UcUserContractService" mock="true" />
+
+
+</beans>

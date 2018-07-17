@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yszj-admin" />
+        <module name="yszj-cms-admin" />
+        <module name="yszj-cms-common" />
+        <module name="yszj-cms-dao" />
+        <module name="yszj-cms-rpc-api" />
+        <module name="yszj-cms-rpc-service" />
+        <module name="yszj-cms-web" />
+        <module name="yszj-common" />
+        <module name="yszj-upms-client" />
+        <module name="yszj-upms-common" />
+        <module name="yszj-upms-dao" />
+        <module name="yszj-upms-rpc-api" />
+        <module name="yszj-upms-rpc-service" />
+        <module name="yszj-upms-server" />
+        <module name="yszj-user-admin" />
+        <module name="yszj-user-common" />
+        <module name="yszj-user-dao" />
+        <module name="yszj-user-rpc-api" />
+        <module name="yszj-user-rpc-service" />
+        <module name="yszj-user-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="syzj-upms-rpc-service" target="1.8" />
+      <module name="yszj-cms-job" target="1.8" />
+      <module name="yszj-cms-search" target="1.8" />
+      <module name="yszj-start" target="1.8" />
+      <module name="yszj-uesr-rpc-api" target="1.8" />
+      <module name="yszj-uesr-rpc-service" target="1.7" />
+      <module name="yszj-ui" target="1.5" />
+      <module name="yszj-upms-admin" target="1.8" />
+      <module name="yszj-user-server" target="1.8" />
+      <module name="zheng-cms" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

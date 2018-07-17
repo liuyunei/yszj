@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录中心</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css_user/bootstrap.min.css'}"85>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_ay4w4j5c2tke29.css">
+    <link rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css_user/style.css'}">
+</head>
+<body class="login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>yszj</b>UC</a>
+    </div>
+
+    <div class="row login-box-body">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-xs-6 logo-tip">
+                <i class="iconfont icon-icon053"></i> <span>登录</span>
+            </div>
+            <div class="col-xs-6" style="text-align: right">
+                <a href="signup">注册</a>
+            </div>
+        </div>
+        <!-- Nav tabs -->
+        <ul class="tabs-menu">
+            <li class="active"><a href="#email" data-toggle="tab">邮箱登录</a></li>
+            <li><a href="#phone" data-toggle="tab">短信登录</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="email">
+                <div class="login-box-body">
+                    <!--加入actionca-->
+                    <form  >
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" id="emailNumber" placeholder="邮箱" >
+                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                            <!--在div显示错误信息-->
+                            <div id="emsg" style="color:red;"></div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" id="emailPassword" class="form-control" placeholder="登录密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <!--在div显示错误信息-->
+                            <div id="emsp" style="color:red;"></div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <div class="col-xs-6">
+                                <input class="form-control" type="text" name="yzm" id="yzminput" value="" placeholder="请输入验证码" />
+                                <!--在div显示错误信息-->
+                                <span id="emsy" style="color:red;"></span>
+                            </div>
+                            <div class="col-xs-6">
+                                <canvas id="yzm" width="120" height="35" onclick="str_yzm=getYzm()"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-xs-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat" id="login-bt1">登录</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="checkbox icheck">
+                                    <label>
+                                        <input type="checkbox" id="rememberMe1"> 记住我
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="text-align: right">
+                                <div class="checkbox icheck">
+
+                                    <label>
+                                        <a href="getPassword">忘记密码？</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" id="phone">
+                <div class="login-box-body">
+                    <form >
+                        <div class="form-group has-feedback">
+                            <input type="email" class="form-control" id="phoneNumber" placeholder="手机号" onchange="checkMobile(this)">
+                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" id="phonePassword" class="form-control" placeholder="登录密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                        <div class="col-xs-6">
+                            <input type="text" id="phoneCode" class="form-control" placeholder="输入验证码">
+                        </div>
+                        <div class="col-xs-6">
+                            <input class="btn btn-primary btn-block btn-flat" type="button" id="btn2" value="获取验证码" />
+                            <span></span>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-xs-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat" id="login-bt2">登录</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="checkbox icheck">
+                                    <label>
+                                        <input id="rememberMe2" type="checkbox"> 记住我
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="text-align: right">
+                                <div class="checkbox icheck">
+                                    <label>
+                                        <a href="getPassword">忘记密码？</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- /.login-box-body -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.login-box -->
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
+<script src="js_user/jquery.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/jquery.min.js'}"></script>
+<script src="js_user/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/bootstrap.min.js'}"></script>
+<script type="text/javascript">
+    $(function() {
+        // 点击邮箱登录按钮
+        $('#login-bt1').click(function() {
+            document.getElementById("emsg").innerHTML = "";
+            document.getElementById("emsp").innerHTML = "";
+            document.getElementById("emsy").innerHTML = "";
+            var email = document.getElementById("emailNumber").value; //获取邮箱地址
+            var ep1 = document.getElementById("emailPassword").value;   //获得邮箱密码
+            var yzm=document.getElementById("yzminput").value;//获得验证码
+            //判断邮箱格式是否正确
+            if(email=="")
+            {
+                document.getElementById("emsg").innerHTML = "邮箱不可以为空";
+                return false;
+            }else {
+                emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+                if (!emailReg.test(email)) {
+                    document.getElementById("emsg").innerHTML = "请输入正确邮箱地址";
+                    return false;
+                } else if (ep1 == "") {
+                    document.getElementById("emsp").innerHTML = "请输入密码!";
+                    return false;
+                } else if (str_yzm !=yzm.toUpperCase()) {
+                    document.getElementById("emsy").innerHTML = "验证码不正确！";
+                    str_yzm=getYzm();
+                    return false;
+                } else
+                {
+                    login();
+                }
+            }
+
+        });
+        // 回车事件
+        $('#emailNumber,#emailPassword').keypress(function (event) {
+            if (13 == event.keyCode) {
+                login();
+            }
+        });
+    });
+    // 邮箱登录
+    function login() {
+        alert("进入了邮箱的login方法");
+        $.ajax({//向后台发送数据
+            url: BASE_PATH + '/signin',
+            type: 'POST',
+            data: {
+                username: $('#emailNumber').val(),
+                password: $('#emailPassword').val(),
+                rememberMe: $('#rememberMe1').is(':checked'),
+                backurl: BACK_URL
+            },
+            dataType:"json",
+            success:function(json){
+                alert("登录成功！")
+                window.location.href="http://localhost:4441/getUserInfo";
+            },
+            beforeSend: function() {
+
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
+
+</script>
+<script type="text/javascript">
+    window.onload = function ()
+    {
+        str_yzm=getYzm();
+        //对邮箱发送验证码
+
+        //对手机发送验证码
+        var sleep2 = 60;
+        var interval2 = null;
+        var btn2 = document.getElementById ('btn2');
+        btn2.onclick = function ()
+        {
+            if (!interval2)
+            {
+                this.style.backgroundColor = 'rgb(243, 182, 182)';
+                this.disabled = "disabled";
+                this.style.cursor = "wait";
+                this.value = "重新发送 (" + sleep2-- + ")";
+                interval2 = setInterval (function ()
+                {
+                    if (sleep2 == 0)
+                    {
+                        if (!!interval2)
+                        {
+                            clearInterval (interval2);
+                            interval2 = null;
+                            sleep2 = 60;
+                            btn2.style.cursor = "pointer";
+                            btn2.removeAttribute ('disabled');
+                            btn2.value = "获取验证码";
+                            btn2.style.backgroundColor = '';
+                        }
+                        return false;
+                    }
+                    btn2.value = "重新发送 (" + sleep2-- + ")";
+                }, 1000);
+            }
+        }
+
+    }
+</script>
+<script type="text/javascript">
+    var canvas = document.getElementById("yzm");
+    var ctx = canvas.getContext("2d");
+
+    function randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    function randomColor(min, max) {
+        var r = randomNum(min, max);
+        var g = randomNum(min, max);
+        var b = randomNum(min, max);
+        return "rgb(" + r + "," + g + "," + b + ")"
+    }
+    //获取较小的边
+    var size = Math.min(canvas.width, canvas.height);
+    //文字
+    var str = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    function getYzm() {
+        var str_yzm = '';
+        //背景
+        ctx.fillStyle = randomColor(150, 250);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < 4; i++) {
+            var txt = str[randomNum(0, str.length - 1)];
+            str_yzm = str_yzm + txt;
+            ctx.fillStyle = randomColor(10, 150)
+            ctx.textBaseline = "bottom";
+            ctx.font = randomNum(size * 0.5, size * 0.8) + "px Arial";
+            var x = canvas.width * 0.1 + i * canvas.width * 0.2;
+            var y = canvas.height * 0.9;
+            var angle = randomNum(-30, 30);
+            ctx.translate(x, y);
+            ctx.rotate(angle * Math.PI / 180);
+            ctx.fillText(txt, 0, 0);
+            ctx.rotate(-angle * Math.PI / 180);
+            ctx.translate(-x, -y);
+        }
+        //干扰线
+        for (var i = 0; i < size / 8; i++) {
+            ctx.strokeStyle = randomColor(0, 255);
+            var x1 = randomNum(0, canvas.width);
+            var y1 = randomNum(0, canvas.height);
+            var x2 = randomNum(0, canvas.width);
+            var y2 = randomNum(0, canvas.height);
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+        //干扰点
+        for (var i = 0; i < size / 3; i++) {
+            var x = randomNum(0, canvas.width);
+            var y = randomNum(0, canvas.height);
+            ctx.fillStyle = randomColor(0, 100);
+            ctx.beginPath();
+            ctx.arc(x, y, size / 40, 0, Math.PI * 2, false)
+            ctx.closePath();
+            ctx.fill();
+        }
+        return str_yzm;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>首页 - yszjUser</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="img/favicon.ico" th:href="@{${uiPath} + ${appName} +  '/img/favicon.ico'}">
+    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap.min.css'}">
+    <link rel="stylesheet" href="css/main.css" th:href="@{${uiPath} + ${appName} +  '/css/main.css'}">
+    <link rel="stylesheet" type="text/css" href="css/lunbo.css" th:href="@{${uiPath} + ${appName} +  '/css/lunbo.css'}">
+    <link rel="stylesheet" type="text/css" href="css/index.css" th:href="@{${uiPath} + ${appName} +  '/css/index.css'}">
+    <script type="text/javascript" src="js/lunbo.js" th:src="@{${uiPath} + ${appName} +  '/js/lunbo.js'}"></script>
+</head>
+<body style="background:#f7f7f7">
+<!--表头-->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">yszjUser</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+
+                    <li>
+                    <li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="active">
+                        <a href="http://localhost:4441/contract/index">首页</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/news">新闻资讯</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/case">合同案例</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+                        </a>
+                        <ul class="dropdown-menu" id="menu1">
+                            <li>
+                                <a href="http://localhost:4441/contract/alreadyselect">已签合同
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:4441/contract/waitselect">待签合同
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://localhost:4441/contract/upload2">发起合同签署
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" th:href="getUserInfo">个人基本信息</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" th:href="password_reset">修改密码</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+<!-- 第一版：图片轮播 -->
+    <h2 class="index-h2">欢迎来到指尖云上签</h2>
+    <br><br>
+    <div class="wrap960">
+        <div class="shareLayout">
+            <div class="shareList" id="shareList">
+                <a  target="_blank">
+                    <img src="img/1.jpg" th:src="@{${uiPath} + ${appName} +  '/img/1.jpg'}" alt="1"/>
+                </a>
+                <a target="_blank">
+                    <img src="img/2.jpg" th:src="@{${uiPath} + ${appName} +  '/img/2.jpg'}" alt="2"/>
+                </a>
+                <a  target="_blank">
+                    <img src="img/3.jpg" th:src="@{${uiPath} + ${appName} +  '/img/3.jpg'}" alt="3"/>
+                </a>
+                <a  target="_blank">
+                    <img src="img/4.jpg" th:src="@{${uiPath} + ${appName} +  '/img/4.jpg'}" alt="4"/>
+                </a>
+                <a  target="_blank">
+                    <img src="img/5.jpg" th:src="@{${uiPath} + ${appName} +  '/img/5.jpg'}" alt="5"/>
+                </a>
+                <a  target="_blank">
+                    <img src="img/6.jpg" th:src="@{${uiPath} + ${appName} +  '/img/6.jpg'}" alt="6"/>
+                </a>
+            </div>
+            <div class="pageLayout" id="pageLayout">
+
+            </div>
+        </div>
+        <!--切换按钮-->
+        <a href="javascript:;" class="backBtn" id="backBtn"></a>
+        <a href="javascript:;" class="nextBtn" id="nextBtn"></a>
+    </div>
+    <script>
+        tomeLogin.init();
+    </script>
+    <!---第二版：产品介绍-->
+<br>
+    <div  class="wrap960">
+        <h2 class="index-h2">专业的电子合同服务</h2><br>
+        <img src="img/index1.png" th:src="@{${uiPath} + ${appName} +  '/img/index1.png'}" alt="11" height="504px" width="960px"/>
+    </div>
+    <!--第三版-->
+        <div class="product-info clearfix">
+            <div class="wid-1180">
+                <h2 class="index-h2">丰富的行业应用场景</h2>
+                <ul class="application">
+                    <li>
+                        <div class="port-1 effect-1" title="旅游行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/11.jpg"th:src="@{${uiPath} + ${appName} +  '/img/11.jpg'}" alt="旅游行业合同场景应用">
+                                    <p class="tit-tip">旅游</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>旅游</h3>
+                                    <p>在线高效签发合同，大幅压缩成本，快速完成旅社与客户签约</p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="电商行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/22.jpg"th:src="@{${uiPath} + ${appName} +  '/img/22.jpg'}" alt="电商行业合同场景应用">
+                                    <p class="tit-tip">电商</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>电商</h3>
+                                    <p>缩短企业入驻及交易周期，提升线上供应链管理效率，消除纸质合同安全隐患</p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="金融行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/33.jpg"th:src="@{${uiPath} + ${appName} +  '/img/33.jpg'}" alt="金融行业合同场景应用">
+                                    <p class="tit-tip">金融</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>金融</h3>
+                                    <p>顺应当下国家政策要求，明晰各方权责，降低维权成本</p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="HR行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/44.jpg"th:src="@{${uiPath} + ${appName} +  '/img/44.jpg'}" alt="HR行业合同场景应用">
+                                    <p class="tit-tip">HR</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>HR</h3>
+                                    <p>在线签署劳动合同，零仓储实现本地/异地人事合同管理
+                                    </p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="O2O行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/55.jpg"th:src="@{${uiPath} + ${appName} +  '/img/55.jpg'}" alt="O2O行业合同场景应用">
+                                    <p class="tit-tip">O2O</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>O2O</h3>
+                                    <p>提升供应链管理效率，保障交易安全与规范</p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="物流行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/66.jpg"th:src="@{${uiPath} + ${appName} +  '/img/66.jpg'}" alt="物流行业合同场景应用">
+                                    <p class="tit-tip">物流</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>物流</h3>
+                                    <p>在线管理海量物流单据，高效提货、运输
+                                    </p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="制造/零售行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/77.jpg"th:src="@{${uiPath} + ${appName} +  '/img/77.jpg'}" alt="制造/零售行业合同场景应用">
+                                    <p class="tit-tip">制造/零售业</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>制造/零售业</h3>
+                                    <p>提升供应商、采购商、分销商合同签署效率， 优化招投标合同签署管理流程</p>
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="port-1 effect-1" title="更多行业合同场景应用">
+                                <div class="image-box">
+                                    <img src="img/88.jpg" th:src="@{${uiPath} + ${appName} +  '/img/88.jpg'}" alt="更多行业合同场景应用">
+                                    <p class="tit-tip">更多</p>
+                                </div>
+                                <div class="text-desc">
+                                    <h3>更多</h3>
+                                    <p>医疗、保险、教育、房产、事业单位等更多行业将陆续使用电子签名</p>
+                                </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+<!-- footer -->
+    <div  style="min-height: 100px;">
+    </div>
+<footer  class="container-fluid" style="background:#222;padding-top:20px;min-height:100px;color: #f7f7f7">
+    <div class="container">
+        <div class="row" >
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" >
+                系统简介：本系统主要用于合同签署管理相关流程，以此简化合同签署繁琐的流程。
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                客服热线：400-607-5550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                客户QQ：4006075550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hidden-md">
+                客户邮箱：4006075550@qq.com
+            </div>
+            <br>
+        </div>
+    </div>
+</footer>
+<!-- /footer -->
+<script src="js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} +  '/js/jquery-1.11.2.min.js'}"></script>
+<script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} +  '/js/bootstrap.min.js'}"></script>
+<!--模态框-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body"style="overflow: auto">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+                <div align="center">
+                    <input type="hidden" id="url"/>
+                    <a href="signout" class="btn btn-success" >确定</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+        <title>已签合同</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Bootstrap -->
+
+		<link rel="shortcut icon" href="img/favicon.ico" th:href="@{${uiPath} + ${appName} +  '/img/favicon.ico'}">
+        <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap.min.css'}"  media="screen">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap-responsive.min.css'}"  media="screen">
+        <link rel="stylesheet" href="css/styles.css" th:href="@{${uiPath} + ${appName} +  '/css/styles.css'}"  media="screen">
+        <link rel="stylesheet" href="css/DT_bootstrap.css" th:href="@{${uiPath} + ${appName} +  '/css/DT_bootstrap.css'}"  media="screen">
+		<link rel="stylesheet" href="css/main.css" th:href="@{${uiPath} + ${appName} +  '/css/main.css'}">
+        <script src="js/modernizr-2.6.2-respond-1.1.0.min.js" th:src="@{${uiPath} + ${appName} +  '/js/modernizr-2.6.2-respond-1.1.0.min.js'}"></script>
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap-responsive.min.css'}"  media="screen">
+</head>
+	<style>
+		.pagination ul {
+			display: inline-block!important;
+			margin-bottom: 0!important;
+			/* margin-left: 0; */
+			-webkit-border-radius: 4px!important;
+			-moz-border-radius: 4px!important;
+			border-radius: 4px!important;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05)!important;
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05)!important;
+			box-shadow: 0 1px 2px rgba(0,0,0,0.05)!important;
+		}
+		ul, ol {
+			padding: 0!important;
+			margin: 0 0 10px 25px!important;
+		}
+		.pagination ul>li {
+			display: inline!important;
+		}
+		li {
+			line-height: 20px!important;
+		}
+		.pagination ul>li>a, .pagination ul>li>span {
+			float: left!important;
+			padding: 4px 12px!important;
+			line-height: 20px!important;
+			text-decoration: none!important;
+			background-color: #fff!important;
+			border: 1px solid #ddd!important;
+			/*border-left-width: 0!important;*/
+		}
+		.navbar-inner {
+			min-height: 40px;
+			padding-right: 20px;
+			padding-left: 20px;
+			background-color: #fafafa;
+			background-image: -moz-linear-gradient(top,#fff,#f2f2f2);
+			background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+			background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
+			background-image: -o-linear-gradient(top,#fff,#f2f2f2);
+			background-image: linear-gradient(to bottom,#fff,#f2f2f2);
+			background-repeat: repeat-x;
+			border: 1px solid #d4d4d4;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
+			-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+			-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+			box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+		}
+		.navbar {
+			margin-bottom: 20px;
+			overflow: visible;
+		}
+		.muted {
+			color: #999!important;
+		}
+		.collapse.in {
+			height: auto!important;
+		}
+		.collapse {
+			/*display: none;*/
+			position: relative!important;
+			/*height: 0!important;*/
+			overflow: hidden!important;
+			-webkit-transition: height .35s ease;
+			-moz-transition: height .35s ease;
+			-o-transition: height .35s ease;
+			transition: height .35s ease!important;
+		}
+		@media (min-width: 1200px){
+			.row-fluid .span6 {
+				width: 48%!important;
+			}
+		}
+	</style>
+    <body style="background:#f7f7f7">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#">yszjUser</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav pull-right">
+
+						<li>
+						<li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+						</li>
+					</ul>
+					<ul class="nav">
+						<li class="active">
+							<a href="http://localhost:4441/contract/index">首页</a>
+						</li>
+						<li class="dropdown">
+							<a href="http://localhost:4441/contract/news">新闻资讯</a>
+						</li>
+						<li class="dropdown">
+							<a href="http://localhost:4441/contract/case">合同案例</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+							</a>
+							<ul class="dropdown-menu" id="menu1">
+								<li>
+									<a href="http://localhost:4441/contract/alreadyselect">已签合同
+									</a>
+								</li>
+								<li>
+									<a href="http://localhost:4441/contract/waitselect">待签合同
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="http://localhost:4441/contract/upload2">发起合同签署
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a tabindex="-1" th:href="getUserInfo">个人基本信息</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a tabindex="-1" th:href="password_reset">修改密码</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	 <!--/.navbar -->
+	<div class="container">
+		<div class="container-fluid">
+            <div class="row-fluid">
+                 <div class="span10" id="content" style="width:97%">
+                     <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">已签合同</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+  									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+										<thead>
+											<tr>
+												<th>合同编号</th>
+												<th>接收人的账户</th>
+												<th>合同标题</th>
+												<th>合同签署时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+                                        <foreach th:each="lists : ${list}">
+										<tbody>
+											<tr class="odd gradeX">
+                                                <td  th:utext="${lists.contractId}"></td>
+                                                <td th:utext="${lists.userId2}"></td>
+                                                <td  th:utext="${lists.contractTitle}"></td>
+                                                <td th:utext="${lists.contractTime2}" class="hhh"></td>
+												<td class="center">
+													<input type="submit" del-id="${lists.contractId}"  value="删 除" class="btn btn-danger btn-sm bt-del" />
+												</td>
+											</tr>
+										</tbody>
+                                        </foreach>
+									</table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	</div>     <!--/.fluid-container-->
+
+        <script src="js/jquery-1.9.1.js" th:src="@{${uiPath} + ${appName} +  '/js/jquery-1.9.1.js'}"></script>
+        <script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} +  '/js/bootstrap.min.js'}"></script>
+        <script src="js/jquery.dataTables.js" th:src="@{${uiPath} + ${appName} +  '/js/jquery.dataTables.js'}"></script>
+        <script src="js/scripts.js" th:src="@{${uiPath} + ${appName} +  '/js/scripts.js'}"></script>
+        <script src="js/DT_bootstrap.js" th:src="@{${uiPath} + ${appName} +  '/js/DT_bootstrap.js'}"></script>
+	<!--模态框-->
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body"style="overflow: auto">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+					<div align="center">
+						<input type="hidden" id="url"/>
+						<a href="signout" class="btn btn-success" >确定</a>
+						<button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+    <script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+        <script>
+            // alert("functio");
+            var $elements = $('.hhh');
+            // var len = $elements.length;
+            // alert('有 ' + len + ' 个相同class');
+            $elements.each(function() {
+                var id = $(this).text();
+                $(this).text(Todate(id));
+            });
+            $(function() {
+                // 点击删除按钮
+                $('.bt-del').click(function() {
+                    var empName = $(this).parents("tr").find("td:eq(0)").text();
+            $.ajax({
+                url: BASE_PATH + '/contract/del',
+                type: 'POST',
+                data: {
+                    id:empName,
+                },
+                beforeSend: function() {
+                    alert("您删除的合同是合同编号为"+empName+"的合同！");
+                },
+                success: function(json){
+                    if (json.code == 1) {
+                        alert("删除成功！点击刷新");
+                        window.location.href="http://localhost:4441/contract/alreadyselect";
+                    } else {
+                        if (10101 == json.code) {
+                            $('#username').focus();
+                        }
+                        if (10102 == json.code) {
+                            $('#password').focus();
+                        }
+                    }
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+                });
+            });
+            function Todate(num) {
+                num = num + "";
+                var date = "";
+                var month = new Array();
+                month["Jan"] = '01'; month["Feb"] = '02'; month["Mar"] = '03'; month["Apr"] = '04'; month["May"] = '05';
+                month["Jun"] = '06'; month["Jul"] = '07'; month["Aug"] = '08'; month["Sep"] = '09'; month["Oct"] = '10';
+                month["Nov"] = '11'; month["Dec"] = '12';
+                var week = new Array();
+                week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四"; week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
+                //用空格分割
+                str = num.split(" ");
+                //Sat Jun 01 00:00:00 CST 1996  年份为第五，月份为第二 日期为第三
+                date = str[5] + "-";
+                date = date + month[str[1]] + "-" + str[2];
+                return date;
+            }
+    </script>
+    </body>
+</html>

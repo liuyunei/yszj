@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="renderer" content="webkit"/>
+    <title>个人资料</title>
+    <link rel="shortcut icon" href="img/favicon.ico"/>
+    <link rel="stylesheet" href="css_user/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css_user/bootstrap.min.css'}"/>
+    <link rel="stylesheet" href="css_user/main.css"  th:href="@{${uiPath} + ${appName} + '/css_user/main.css'}"/>
+    <link rel="stylesheet" type="text/css" href="css_user/lunbo.css" th:href="@{${uiPath} + ${appName} + '/css_user/lunbo.css'}"/>
+    <link rel="stylesheet" type="text/css" href="css_user/index.css" th:href="@{${uiPath} + ${appName} + '/css_user/index.css'}"/>
+    <!--<link href="css/admin.css" rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css/admin.css'}"/>-->
+    <!--<script type="text/javascript" src="js/lunbo.js" th:src="@{${uiPath} + ${appName} + '/css/admin.css'}"></script>-->
+</head>
+<body >
+<!--表头-->
+<nav class="navbar navbar-inverse navbar-fixed-top" ><!--navbar-inverse-->
+    <div class="container">
+        <!-- navbar-header -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/}" title="yszjCMS"><span id="logo-text-left">yszj</span><span id="logo-text-right">User</span></a>
+        </div>
+        <!-- /.navbar-header -->
+        <!-- navbar-collapse -->
+        <div class="collapse navbar-collapse" id="nav-menu">
+            <ul class="nav navbar-nav">
+                <li class="active" >
+                    <a href="http://localhost:4441/contract/index">首页</a>
+                </li>
+                <li class="dropdown">
+                    <a href="http://localhost:4441/contract/news">新闻资讯</a>
+                </li>
+                <li class="dropdown">
+                    <a href="http://localhost:4441/contract/case">合同案例</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+                    </a>
+                    <ul class="dropdown-menu" id="menu1">
+                        <li>
+                            <a href="http://localhost:4441/contract/alreadyselect">已签合同
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:4441/contract/waitselect">待签合同
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="http://localhost:4441/contract/upload2">发起合同签署
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a tabindex="-1" th:href="getUserInfo">个人基本信息</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a tabindex="-1" href="password_reset">修改密码</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-right navbar-nav">
+
+                <li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+       <div style="margin: 70px;margin-left: 80px;margin-top: 40px">
+        <!--<div th:utext="${upuc.html}"></div>-->
+        <div class="content_main">
+            <div id="iframe_home" class="iframe cur" th:action="@{/getUserInfo}" th:method="get">
+                <div style="float:left;width:100%;height: 20%">
+
+                    <div align="center"><span style="font-size:20px" th:text="${ucUser.userId}"></span><font style="font-size: 20px">用户,欢迎您进入个人信息</font>
+                        <span th:each="ucUser : ${ucUser}"><a href="updateUserInfo">修改</a></span>
+                    </div>
+                    </br>
+                    <!--<dd  style="text-align:right" th:each="ucUser : ${ucUser}"><a href="updateUserInfo">修改个人信息</a></dd>-->
+                    <!--<dd th:each="ucUserD : ${ucUserD}"><a href="/upuc.html" th:href="@{'/upuc/' + ${ucUserD.userId}}" th:text="${ucUserD.userId}">修改信息</a></dd>-->
+                    </dl>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="container">
+                    <!--最上行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" >
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第一行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px">
+                            <div class="col-md-2 text-right" >
+                                <label class="left"  >用户名：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <div name="useId" id="useId"  th:text="${ucUser.userId}"></div>
+                            </div>
+                            <div class="col-md-2 text-right" >
+                                <label class="right">昵称：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <div name="nickname" id="nickname" th:text="${ucUser.nickname}"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第二行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px">
+                            <div class="col-md-2 text-right"  >
+                                <label class="left">性别：</label>
+                            </div>
+                            <div class="col-md-3">
+                                <div name="sex" id="sex" th:text="${ucUser.sex}"></div>
+                            </div>
+                            <div class="col-md-2 text-right" >
+                                <label class="right">真实姓名：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <div name="realName" id="realName" th:text="${ucUser.realName}"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第三行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px">
+                            <div class="col-md-2 text-right"  >
+                                <label class="left">出生日期：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <!--用input临时存放数据，并将其隐藏-->
+                                <input id="birth" th:field="${ucUser.birthday}" style="display: none">
+                                <div name="birthday" id="birthday" ></div>
+                            </div>
+                            <div class="col-md-2 text-right"  >
+                                <label class="left">密保问题：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <input id="que" th:field="${ucUser.question}" style="display: none">
+                                <div name="question" id="question"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                    <!--第四行-->
+                    <div class="row">
+                        <div class="col-md-1" >
+                        </div>
+                        <div class="col-md-10" style="height: 30px" >
+                            <div class="col-md-2 text-right" >
+                                <label class="content">个性签名：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <div name="signature" id="signature" th:text="${ucUser.signature}"></div>
+                            </div>
+
+                            <div class="col-md-2 text-right" >
+                                <label class="left">密保答案：</label>
+                            </div>
+                            <div class="col-md-3" >
+                                <div name="answer" id="answer" th:text="${ucUser.answer}"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+
+
+<!-- footer -->
+<div  style="min-height: 330px;">
+</div>
+<footer  class="container-fluid" style="background:#222;padding-top:20px;min-height:120px;color: #f7f7f7">
+    <div class="container">
+        <div class="row" >
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                系统简介：本系统主要用于合同签署管理相关流程，以此简化合同签署繁琐的流程。
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                客服热线：400-607-5550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                客户QQ：4006075550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-md">
+                客户邮箱：4006075550@qq.com
+            </div>
+            <br>
+        </div>
+    </div>
+</footer>
+<!-- /footer -->
+<script src="js_user/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/jquery-1.11.2.min.js'}"></script>
+<script src="js_user/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js_user/bootstrap.min.js'}"></script>
+<!--<script src="js/admin.js" th:src="@{${uiPath} + ${appName} + '/js/admin.js'}"></script>-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-body"style="overflow: auto">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+                <div align="center">
+                    <input type="hidden" id="url"/>
+                    <a href="signout" class="btn btn-success" >确定</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function Todate(num) {
+        num = num + "";
+        var date = "";
+        var month = new Array();
+        month["Jan"] = '01'; month["Feb"] = '02'; month["Mar"] = '03'; month["Apr"] = '04'; month["May"] = '05';
+        month["Jun"] = '06'; month["Jul"] = '07'; month["Aug"] = '08'; month["Sep"] = '09'; month["Oct"] = '10';
+        month["Nov"] = '11'; month["Dec"] = '12';
+        var week = new Array();
+        week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四"; week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
+        //用空格分割
+        str = num.split(" ");
+        //Sat Jun 01 00:00:00 CST 1996  年份为第五，月份为第二 日期为第三
+        date = str[5] + "-";
+        date = date + month[str[1]] + "-" + str[2];
+        return date;
+    }
+    window.onload=function () {
+        var sex = document.getElementById("sex").innerHTML;
+        if (sex == 1) {
+            document.getElementById("sex").innerHTML = "男";
+        } else if (sex == 2) {
+            document.getElementById("sex").innerHTML = "女";
+        } else {
+            document.getElementById("sex").innerHTML = "未知";
+        }
+        //密保问题
+        var que = document.getElementById("que").value;
+        if(que==0){
+            document.getElementById("question").innerHTML = "你的父亲名字?";
+        }else if(que==1){
+            document.getElementById("question").innerHTML = "你的母亲名字?";
+        }else if(que==2){
+            document.getElementById("question").innerHTML = "你的高中学校的名字?";
+        }else if(que==3){
+            document.getElementById("question").innerHTML = "你的学号?";
+        }
+        //出生日期转换
+        var birth=document.getElementById("birth").value;
+        document.getElementById("birthday").innerHTML=Todate(birth);
+    }
+
+</script>
+
+</body>
+</html>

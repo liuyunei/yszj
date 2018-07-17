@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发起合同签署</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="shortcut icon" href="img/favicon.ico" th:href="@{${uiPath} + ${appName} +  '/img/favicon.ico'}">
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic,300,300italic' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet"href="css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap.min.css'}">
+    <link rel="stylesheet" href="css/main.css" th:href="@{${uiPath} + ${appName} +  '/css/main.css'}">
+    <link rel="stylesheet" href="css/base.css" th:href="@{${uiPath} + ${appName} +  '/css/base.css'}">
+    <link rel="stylesheet" href="css/skeleton.css" th:href="@{${uiPath} + ${appName} +  '/css/skeleton.css'}">
+    <link rel="stylesheet" href="css/screen.css" th:href="@{${uiPath} + ${appName} +  '/css/screen.css'}">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" th:href="@{${uiPath} + ${appName} +  '/css/bootstrap-responsive.min.css'}"  media="screen">
+    <script src="js/jquery.form.js" th:src="@{${uiPath} + ${appName} +  '/js/jquery.form.js'}"></script>
+    <style>
+        #elm1 {
+            visibility:visible!important;
+            overflow:auto;
+        }
+    </style>
+
+</head>
+<body style="background:#f7f7f7">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">yszjUser</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+
+                    <li>
+                    <li><a data-toggle="modal" data-target=".bs-example-modal-sm">安全退出</a></li>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="active">
+                        <a href="http://localhost:4441/contract/index">首页</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/news">新闻资讯</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://localhost:4441/contract/case">合同案例</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">合同管理 <b class="caret"></b>
+
+                        </a>
+                        <ul class="dropdown-menu" id="menu1">
+                            <li>
+                                <a href="http://localhost:4441/contract/alreadyselect">已签合同
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:4441/contract/waitselect">待签合同
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://localhost:4441/contract/upload2">发起合同签署
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息管理 <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" th:href="getUserInfo">个人基本信息</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" th:href="password_reset">修改密码</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="sixteen columns nosliderspacer"></div>
+<div class="container main portfolio4column">
+    <div class="sixteen columns nosliderspacer"></div>
+        <div style="margin-top: 80px" id="respond">
+            <form >
+                <h3 class="teaserheadline" style="margin-bottom:18px;">发起合同签署
+                    <input type="text"  id="userId2" placeholder="收件人">
+                    <input type="text"  id="contractTitle" placeholder="合同标题">
+                </h3>
+               <div style="float: left;padding-left: 35px">
+                    <div class="row" style="top:20px;position: relative">
+                        <div class="col-lg-6">
+                                <input id="filename1" name="filename" type="file" onchange="textMess(this.files)">
+                                <input type="submit" id="bt-update"  value="发起">
+                                <input type="submit" id="bt-cancal"  value="取消">
+                        </div>
+                    </div>
+               </div>
+                <hr style="top:20px;position: relative">
+                <div><h5>选中文件内容展示区:</h5></div>
+                <textarea id="elm1" name="preview" placeholder="合同预览"style="top:20px;position: relative"></textarea>
+            </form>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+        <div class="sixteen columns bottomadjust"></div>
+
+    </div>
+<!-- footer -->
+<div  style="min-height: 100px;">
+</div>
+<footer  class="container-fluid" style="background:#222;padding-top:20px;min-height:100px;color: #f7f7f7">
+    <div class="container">
+        <div class="row" >
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" >
+                系统简介：本系统主要用于合同签署管理相关流程，以此简化合同签署繁琐的流程。
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                客服热线：400-607-5550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                客户QQ：4006075550
+            </div>
+            <br>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hidden-md">
+                客户邮箱：4006075550@qq.com
+            </div>
+            <br>
+        </div>
+    </div>
+</footer>
+<!-- /footer -->
+<script src="js/jquery-1.9.1.js" th:src="@{${uiPath} + ${appName} +  '/js/jquery-1.9.1.js'}"></script>
+<script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} +  '/js/bootstrap.min.js'}"></script>
+<script src="js/scripts.js" th:src="@{${uiPath} + ${appName} +  '/js/scripts.js'}"></script>
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
+
+<!--模态框-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body"style="overflow: auto">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="text-center" style="margin: 30px">您确认退出吗?</div>
+
+                <div align="center">
+                    <input type="hidden" id="url"/>
+                    <a href="signout" class="btn btn-success" >确定</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    //合同预览
+    function textMess(file){
+        var mess=file[0];
+        var file=new FileReader();
+        file.readAsText(mess);
+        file.onload=function(e){
+            var htmlCode=e.target.result;
+            document.getElementById("elm1").innerText=htmlCode;
+        }
+    }
+</script>
+<script>
+    $(function() {
+        // 点击发起按钮
+        $('#bt-update').click(function() {
+        alert("dada");
+        var f = document.getElementById("filename").files;
+        alert(f);
+        $.ajax({
+            url :  BASE_PATH + '/contract/upload2',
+            type : "POST",
+            data:{
+                userId2: $('#userId2').val(),
+                contractTitle: $('#contractTitle').val(),
+                filename: f
+            },
+            beforeSend: function() {
+                alert("4343");
+                alert($('#userId2').val());
+            },
+            success: function(json){
+                if (json.code == 1) {
+                    alert("发起成功！");
+                    window.location.href="http://localhost:4441/contract/alreadyselect";
+                } else {
+                    alert(json.data);
+                    if (10101 == json.code) {
+                        $('#emailNumber').focus();
+                    }
+                    if (10102 == json.code) {
+                        $('#epassword1').focus();
+                    }
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+
+        });
+    });
+    });
+</script>
+</body>
+</html>
